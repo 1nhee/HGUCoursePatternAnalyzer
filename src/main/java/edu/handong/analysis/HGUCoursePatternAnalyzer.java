@@ -58,11 +58,13 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		
 		int i = 0;
-		Student check_student;
+		String check_student_string;
 		
         for(String getNamesFromString: lines){
-        	 this.check_student = getNamesFromString.trim().split(",")[1];
-        	 if(!(studentExist(students[i], check_student))) {
+        	 check_student_string = getNamesFromString.trim().split(",")[1];
+        	 Student check_student = new Student(check_student_string);
+        	 if(!(studentExist(students, check_student))) {
+        		 students[i] = check_student ;
         		 i++;
         	 }
         }
@@ -96,6 +98,18 @@ public class HGUCoursePatternAnalyzer {
 	private Course[] initiateCourseArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
+		
+		int i = 0;
+		String check_student_string;
+		
+        for(String getNamesFromString: lines){
+        	 check_student_string = getNamesFromString.trim().split(",")[1];
+        	 Student check_student = new Student(check_student_string);
+        	 if(!(studentExist(students, check_student))) {
+        		 students[i] = check_student ;
+        		 i++;
+        	 }
+        }
 		
 		return null;
 	}
