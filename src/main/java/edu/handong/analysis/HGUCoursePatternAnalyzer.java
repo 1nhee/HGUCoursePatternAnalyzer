@@ -81,8 +81,8 @@ public class HGUCoursePatternAnalyzer {
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
-		for(Student studentExist: students){
-       	 if(studentExist == student) {
+		for(Student student_exist: students){
+       	 if(student_exist == student) {
        		 return true;
        	 }
        }
@@ -100,13 +100,13 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		
 		int i = 0;
-		String check_student_string;
+		String check_course_string;
 		
         for(String getNamesFromString: lines){
-        	 check_student_string = getNamesFromString.trim().split(",")[1];
-        	 Student check_student = new Student(check_student_string);
-        	 if(!(studentExist(students, check_student))) {
-        		 students[i] = check_student ;
+        	 check_course_string = getNamesFromString.trim().split(",")[1];
+        	 Course check_course = new Course(check_course_string);
+        	 if(!(courseExist(courses, check_course))) {
+        		 courses[i] = check_course ;
         		 i++;
         	 }
         }
@@ -123,6 +123,11 @@ public class HGUCoursePatternAnalyzer {
 	private boolean courseExist(Course[] courses, Course course) {
 		
 		// TODO: implement this method
+		for(Course course_exist: courses){
+	       	 if(course_exist == course) {
+	       		 return true;
+	       	 }
+	       }
 
 		return false;
 	}
