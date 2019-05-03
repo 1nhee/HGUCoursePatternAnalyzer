@@ -57,6 +57,15 @@ public class HGUCoursePatternAnalyzer {
 		
 		// TODO: implement this method
 		
+		int i = 0;
+		Student check_student;
+		
+        for(String getNamesFromString: lines){
+        	 this.check_student = getNamesFromString.trim().split(",")[1];
+        	 if(!(studentExist(students[i], check_student))) {
+        		 i++;
+        	 }
+        }
 		
 		return null;
 	}
@@ -70,7 +79,12 @@ public class HGUCoursePatternAnalyzer {
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
-
+		for(Student studentExist: students){
+       	 if(studentExist == student) {
+       		 return true;
+       	 }
+       }
+		
 		return false;
 	}
 	
