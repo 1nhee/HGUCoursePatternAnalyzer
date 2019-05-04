@@ -37,6 +37,7 @@ public class HGUCoursePatternAnalyzer {
 		
 		System.out.println("Number of All Students: " + numOfStudents);
 		for(Student student: students) {
+			System.out.println(student.getName());
 		}
 		
 		courses = initiateCourseArrayFromLines(lines);
@@ -57,8 +58,9 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		
 		students = new Student[numOfStudents];
+		int j = 0;
 		
-		for(int i = 0, j = 0; i < 12; i++) {
+		for(int i = 0; i < 12; i++) {
         	String getNamesWithTrim = new String(lines[i].split(",")[1]);
         	Student check_student = new Student(getNamesWithTrim.trim());
         	if(!(studentExist(students, check_student))) {
@@ -101,8 +103,9 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		
 		courses = new Course[numOfCourses]; 
+		int j = 0;
 		
-        for(int i = 0, j = 0; i < 12; i++) {
+        for(int i = 0; i < 12; i++) {
         	 String getNamesWithTrim = new String(lines[i].split(",")[2]);
         	 Course check_course = new Course(getNamesWithTrim.trim());
         	 if(!(courseExist(courses, check_course))) {
