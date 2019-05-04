@@ -58,15 +58,15 @@ public class HGUCoursePatternAnalyzer {
 		
 		students = new Student[numOfStudents];
 		
-		for(int i = 0, j = 0; i < numOfCourses; i++) {
+		for(int i = 0, j = 0; i < 12; i++) {
         	String getNamesWithTrim = new String(lines[i].split(",")[1]);
         	Student check_student = new Student(getNamesWithTrim.trim());
         	if(!(studentExist(students, check_student))) {
-        		if (j >= numOfCourses) {
-       			 break;
-       		 	}
         		students[j] = check_student;
         		j++;
+        		if (j >= numOfStudents) {
+          			 break;
+          		 }
         	 }
         }
 		return students;
@@ -102,15 +102,15 @@ public class HGUCoursePatternAnalyzer {
 		
 		courses = new Course[numOfCourses]; 
 		
-        for(int i = 0, j = 0; i < numOfCourses; i++) {
+        for(int i = 0, j = 0; i < 12; i++) {
         	 String getNamesWithTrim = new String(lines[i].split(",")[2]);
         	 Course check_course = new Course(getNamesWithTrim.trim());
         	 if(!(courseExist(courses, check_course))) {
+        		 courses[j] = check_course;
+        		 j++;
         		 if (j >= numOfCourses) {
         			 break;
         		 }
-        		 courses[j] = check_course;
-        		 j++;
         	 }
         }
 		return courses;
