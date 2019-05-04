@@ -58,14 +58,17 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		
 		int i = 0;
-		String check_student_string;
+		
+		students = new Student[numOfStudents];
 		
         for(String getNamesFromString: lines){
-        	 check_student_string = getNamesFromString.trim().split(",")[1];
-        	 Student check_student = new Student(check_student_string);
+        	 String getNamesWithTrim = new String(getNamesFromString.split(",")[1]);
+        	 Student check_student = new Student(getNamesWithTrim.trim());
         	 if(!(studentExist(students, check_student))) {
-        		 students[i] = check_student ;
+        		 students[i] = check_student;
         		 i++;
+        	 }else{
+        		 continue;
         	 }
         }
 		
@@ -82,10 +85,16 @@ public class HGUCoursePatternAnalyzer {
 		
 		// TODO: implement this method
 		for(Student student_exist: students){
-       	 if(student_exist == student) {
-       		 return true;
-       	 }
-       }
+			if(student_exist == null) {
+				return false;
+			}else{
+				String student_exist_name = new String(student_exist.getName());
+				String student_name = new String(student.getName());
+	       	 	if(student_name.equals(student_exist_name)) {
+	       		 return true;
+	       	 	}
+			}
+		}
 		
 		return false;
 	}
@@ -100,14 +109,17 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		
 		int i = 0;
-		String check_course_string;
+		
+		courses = new Course[numOfCourses]; 
 		
         for(String getNamesFromString: lines){
-        	 check_course_string = getNamesFromString.trim().split(",")[1];
-        	 Course check_course = new Course(check_course_string);
+        	 String getNamesWithTrim = new String(getNamesFromString.split(",")[2]);
+        	 Course check_course = new Course(getNamesWithTrim.trim());
         	 if(!(courseExist(courses, check_course))) {
-        		 courses[i] = check_course ;
+        		 courses[i] = check_course;
         		 i++;
+        	 }else{
+        		 continue;
         	 }
         }
 		
@@ -124,10 +136,16 @@ public class HGUCoursePatternAnalyzer {
 		
 		// TODO: implement this method
 		for(Course course_exist: courses){
-	       	 if(course_exist == course) {
-	       		 return true;
-	       	 }
-	       }
+			if(course_exist == null) {
+				return false;
+			}else{
+				String course_exist_name = new String(course_exist.getCourseName());
+				String course_name = new String(course.getCourseName());
+		       	 if(course_name.equals(course_exist_name)) {
+		       		 return true;
+		       	 }
+			}
+		}
 
 		return false;
 	}
