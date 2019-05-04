@@ -57,22 +57,17 @@ public class HGUCoursePatternAnalyzer {
 		
 		// TODO: implement this method
 		
-		int i = 0;
-		
 		students = new Student[numOfStudents];
 		
-        for(String getNamesFromString: lines){
-        	 String getNamesWithTrim = new String(getNamesFromString.split(",")[1]);
-        	 Student check_student = new Student(getNamesWithTrim.trim());
-        	 if(!(studentExist(students, check_student))) {
-        		 students[i] = check_student;
-        		 i++;
-        	 }else{
-        		 continue;
+		for(int i = 0, j = 0; i < numOfCourses; i++) {
+        	String getNamesWithTrim = new String(lines[i].split(",")[1]);
+        	Student check_student = new Student(getNamesWithTrim.trim());
+        	if(!(studentExist(students, check_student))) {
+        		students[j] = check_student;
+        		j++;
         	 }
         }
-		
-		return null;
+		return students;
 	}
 
 	/**
@@ -84,18 +79,11 @@ public class HGUCoursePatternAnalyzer {
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
-		for(Student student_exist: students){
-			if(student_exist == null) {
-				return false;
-			}else{
-				String student_exist_name = new String(student_exist.getName());
-				String student_name = new String(student.getName());
-	       	 	if(student_name.equals(student_exist_name)) {
-	       		 return true;
-	       	 	}
+		for(int i = 0; i < numOfStudents; i++) {
+			if(students[i].getName().equals(student.getName())) {
+				return true;
 			}
 		}
-		
 		return false;
 	}
 	
@@ -108,22 +96,17 @@ public class HGUCoursePatternAnalyzer {
 		
 		// TODO: implement this method
 		
-		int i = 0;
-		
 		courses = new Course[numOfCourses]; 
 		
-        for(String getNamesFromString: lines){
-        	 String getNamesWithTrim = new String(getNamesFromString.split(",")[2]);
+        for(int i = 0, j = 0; i < numOfCourses; i++) {
+        	 String getNamesWithTrim = new String(lines[i].split(",")[2]);
         	 Course check_course = new Course(getNamesWithTrim.trim());
         	 if(!(courseExist(courses, check_course))) {
-        		 courses[i] = check_course;
-        		 i++;
-        	 }else{
-        		 continue;
+        		 courses[j] = check_course;
+        		 j++;
         	 }
         }
-		
-		return null;
+		return courses;
 	}
 
 	/**
@@ -135,18 +118,11 @@ public class HGUCoursePatternAnalyzer {
 	private boolean courseExist(Course[] courses, Course course) {
 		
 		// TODO: implement this method
-		for(Course course_exist: courses){
-			if(course_exist == null) {
-				return false;
-			}else{
-				String course_exist_name = new String(course_exist.getCourseName());
-				String course_name = new String(course.getCourseName());
-		       	 if(course_name.equals(course_exist_name)) {
-		       		 return true;
-		       	 }
+		for(int i = 0; i < numOfCourses; i++){
+			if(courses[i].getCourseName().equals(course.getCourseName())) {
+				return true;
 			}
 		}
-
 		return false;
 	}
 
