@@ -62,7 +62,7 @@ public class HGUCoursePatternAnalyzer {
 		int j = 0;
 		
 		//you need to count it till the end of lines
-		for(int i = 0; i < 12; i++) {
+		for(int i = 0; i < lines.length; i++) {
 			//make a string instance to create the 'check_student' instance
         	String getNamesWithTrim = new String(lines[i].split(",")[1]);
         	//make a instance to check it is already in students
@@ -120,7 +120,7 @@ public class HGUCoursePatternAnalyzer {
 		int j = 0;
 		
 		//you need to count it till the end of lines
-        for(int i = 0; i < 12; i++) {
+        for(int i = 0; i < lines.length; i++) {
         	//make a string instance to create the 'check_course' instance
         	 String getNamesWithTrim = new String(lines[i].split(",")[2]);
         	 Course check_course = new Course(getNamesWithTrim.trim());
