@@ -7,7 +7,7 @@ import edu.handong.analysis.datamodel.Student;
 
 public class HGUCoursePatternAnalyzer {
 	
-	String[] lines = {	"1999-1, JC Nam, Java Programming",
+	private String[] lines = {	"1999-1, JC Nam, Java Programming",
 						"1999-2, JC Nam, Programming Language Theory",
 						"1999-1, JC Nam, Data Structures",
 						"2001-1, JC Nam, Database Systems",
@@ -21,10 +21,11 @@ public class HGUCoursePatternAnalyzer {
 						"2019-1, SJ Kim, Algorithm Analysis",
 						};
 
-	int numOfStudents;
-	int numOfCourses;
+	private int numOfStudents;
+	private int numOfCourses;
 	private ArrayList<Student> students;
 	private ArrayList<Course> courses;
+
 	
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
@@ -34,15 +35,16 @@ public class HGUCoursePatternAnalyzer {
 		
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
-	
-		students = new ArrayList<Student>();
+		
+		students = new ArrayList<Student>(); 
 		students = initiateStudentArrayFromLines(lines);
+		
 		System.out.println("Number of All Students: " + numOfStudents);
 		for(Student student: students) {
 			System.out.println(student.getName());
 		}
 		
-		courses = new ArrayList<Course>();
+		courses = new ArrayList<Course>(); 
 		courses = initiateCourseArrayFromLines(lines);
 		System.out.println("Number of All Courses: " + numOfCourses);
 		for(Course course: courses) {
@@ -58,54 +60,32 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private ArrayList<Student> initiateStudentArrayFromLines(String[] lines) {
 		
-		// TODO: implement this method
+		ArrayList<Student> students = new ArrayList<Student>() ;
 		
-		//you need to create instances of students which is student class array
-		students = new ArrayList<Student>();
-		int j = 0;
+		int count = 0;
+		for(String line:lines) {
+			String studentName = line.split(",")[1].trim();
+			Student newStudent = new Student(studentName);
+			if(!studentExist(students,newStudent))
+				students.add(count++,newStudent);
+		}
 		
-		//you need to count it till the end of lines
-		for(int i = 0; i < lines.length; i++) {
-			//make a string instance to create the 'check_student' instance
-        	String getNamesWithTrim = new String(lines[i].split(",")[1]);
-        	//make a instance to check it is already in students
-        	Student check_student = new Student(getNamesWithTrim.trim());
-        	//if there is no same thing in the students
-        	if(!(studentExist(students, check_student))) {
-        		//insert check_student in students
-        		students.add(j,check_student);
-        		//and update the count
-        		j++;
-        		//but count shouldn't be over numOfStudents
-        		if (j >= numOfStudents) {
-          			 break;
-          		 }
-        	 }
-        }
 		return students;
 	}
 
 	/**
 	 * This method check if there is the same name of the second arugement in the array, students
-	 * @param students
+	 * @param students2
 	 * @param student
 	 * @return boolean
 	 */
-	private boolean studentExist(ArrayList<Student> students, Student student) {
+	private boolean studentExist(ArrayList<Student> students2, Student student) {
 		
-		// TODO: implement this method
-		
-		//you can't count it over numOfStudents
-		for(int i = 0; i < numOfStudents; i++) {
-			//if students[i] is empty(null), return false to fill it
-			if(students.get(i) == null) {
-				return false;
-			//if student's name already exist, return true to skip this student's name
-			}else if(students.get(i).getName().equals(student.getName())) {
+		for(Student aStudent:students2) {
+			if(aStudent != null && aStudent.getName().equals(student.getName()))
 				return true;
-			}
 		}
-		//if student's name is not in students yet, return false to insert this student's name
+
 		return false;
 	}
 	
@@ -116,29 +96,16 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private ArrayList<Course> initiateCourseArrayFromLines(String[] lines) {
 		
-		// TODO: implement this method
+		ArrayList<Course> courses = new ArrayList<Course>();
 		
-		//you need to create instances of courses which is course class array
-		courses = new ArrayList<Course>(); 
-		int j = 0;
+		int count = 0;
+		for(String line:lines) {
+			String courseName = line.split(",")[2].trim();
+			Course newCourse = new Course(courseName);
+			if(!courseExist(courses,newCourse))
+				courses.add(count++,newCourse);
+		}
 		
-		//you need to count it till the end of lines
-        for(int i = 0; i < lines.length; i++) {
-        	//make a string instance to create the 'check_course' instance
-        	 String getNamesWithTrim = new String(lines[i].split(",")[2]);
-        	 Course check_course = new Course(getNamesWithTrim.trim());
-        	//if there is no same thing in the courses
-        	 if(!(courseExist(courses, check_course))) {
-        		//insert check_course in courses
-        		 courses.add(j,check_course);
-        		//and update the count
-        		 j++;
-        		//but the count shouldn't be over numOfCourses
-        		 if (j >= numOfCourses) {
-        			 break;
-        		 }
-        	 }
-        }
 		return courses;
 	}
 
@@ -150,20 +117,11 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private boolean courseExist(ArrayList<Course> courses2, Course course) {
 		
-		// TODO: implement this method
-		
-		//you can't count it over numOfStudents
-		for(int i = 0; i < numOfCourses; i++){
-			//if courses[i] is empty(null), return false to fill it
-			if(courses2.get(i) == null) {
-				return false;
-			//if course's name already exist, return true to skip this course name
-			}else if(courses2.get(i).getCourseName().equals(course.getCourseName())) {
+		for(Course aCourse:courses2) {
+			if(aCourse != null && aCourse.getCourseName().equals(course.getCourseName()))
 				return true;
-			}
 		}
-		//if course's name is not in courses yet, return false to insert this course's name
+
 		return false;
 	}
-
 }
