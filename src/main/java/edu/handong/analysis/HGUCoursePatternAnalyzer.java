@@ -1,5 +1,7 @@
 package edu.handong.analysis;
 
+import java.util.ArrayList;
+
 import edu.handong.analysis.datamodel.Course;
 import edu.handong.analysis.datamodel.Student;
 
@@ -21,8 +23,8 @@ public class HGUCoursePatternAnalyzer {
 
 	int numOfStudents;
 	int numOfCourses;
-	Student[] students;
-	Course[] courses;
+	private ArrayList<Student> students;
+	private ArrayList<Course> courses;
 	
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
@@ -33,13 +35,14 @@ public class HGUCoursePatternAnalyzer {
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
 	
+		students = new ArrayList<Student>();
 		students = initiateStudentArrayFromLines(lines);
-		
 		System.out.println("Number of All Students: " + numOfStudents);
 		for(Student student: students) {
 			System.out.println(student.getName());
 		}
 		
+		courses = new ArrayList<Course>();
 		courses = initiateCourseArrayFromLines(lines);
 		System.out.println("Number of All Courses: " + numOfCourses);
 		for(Course course: courses) {
@@ -53,12 +56,12 @@ public class HGUCoursePatternAnalyzer {
 	 * @param lines
 	 * @return
 	 */
-	private Student[] initiateStudentArrayFromLines(String[] lines) {
+	private ArrayList<Student> initiateStudentArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
 		
 		//you need to create instances of students which is student class array
-		students = new Student[numOfStudents];
+		students = new ArrayList<Student>();
 		int j = 0;
 		
 		//you need to count it till the end of lines
@@ -70,7 +73,7 @@ public class HGUCoursePatternAnalyzer {
         	//if there is no same thing in the students
         	if(!(studentExist(students, check_student))) {
         		//insert check_student in students
-        		students[j] = check_student;
+        		students.add(j,check_student);
         		//and update the count
         		j++;
         		//but count shouldn't be over numOfStudents
@@ -88,17 +91,17 @@ public class HGUCoursePatternAnalyzer {
 	 * @param student
 	 * @return boolean
 	 */
-	private boolean studentExist(Student[] students, Student student) {
+	private boolean studentExist(ArrayList<Student> students, Student student) {
 		
 		// TODO: implement this method
 		
 		//you can't count it over numOfStudents
 		for(int i = 0; i < numOfStudents; i++) {
 			//if students[i] is empty(null), return false to fill it
-			if(students[i] == null) {
+			if(students.get(i) == null) {
 				return false;
 			//if student's name already exist, return true to skip this student's name
-			}else if(students[i].getName().equals(student.getName())) {
+			}else if(students.get(i).getName().equals(student.getName())) {
 				return true;
 			}
 		}
@@ -111,12 +114,12 @@ public class HGUCoursePatternAnalyzer {
 	 * @param lines
 	 * @return
 	 */
-	private Course[] initiateCourseArrayFromLines(String[] lines) {
+	private ArrayList<Course> initiateCourseArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
 		
 		//you need to create instances of courses which is course class array
-		courses = new Course[numOfCourses]; 
+		courses = new ArrayList<Course>(); 
 		int j = 0;
 		
 		//you need to count it till the end of lines
@@ -127,7 +130,7 @@ public class HGUCoursePatternAnalyzer {
         	//if there is no same thing in the courses
         	 if(!(courseExist(courses, check_course))) {
         		//insert check_course in courses
-        		 courses[j] = check_course;
+        		 courses.add(j,check_course);
         		//and update the count
         		 j++;
         		//but the count shouldn't be over numOfCourses
@@ -141,21 +144,21 @@ public class HGUCoursePatternAnalyzer {
 
 	/**
 	 * This method check if there is the same name of the second argument in the array, courses.
-	 * @param courses
+	 * @param courses2
 	 * @param course
 	 * @return boolean
 	 */
-	private boolean courseExist(Course[] courses, Course course) {
+	private boolean courseExist(ArrayList<Course> courses2, Course course) {
 		
 		// TODO: implement this method
 		
 		//you can't count it over numOfStudents
 		for(int i = 0; i < numOfCourses; i++){
 			//if courses[i] is empty(null), return false to fill it
-			if(courses[i] == null) {
+			if(courses2.get(i) == null) {
 				return false;
 			//if course's name already exist, return true to skip this course name
-			}else if(courses[i].getCourseName().equals(course.getCourseName())) {
+			}else if(courses2.get(i).getCourseName().equals(course.getCourseName())) {
 				return true;
 			}
 		}
