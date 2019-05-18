@@ -1,4 +1,4 @@
-package edu.handong.analysis;
+ package edu.handong.analysis;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class HGUCoursePatternAnalyzer {
 						"1999-1, JC Nam, Data Structures",
 						"2001-1, JC Nam, Database Systems",
 						"2018-1, SB Lim, Java Programming",
-						"2018-2, SB Lim, Programming Language Theory",
+						"2018-2, SB Lim, P rogramming Language Theory",
 						"2019-1, SB Lim, Data Structures",
 						"2019-1, SB Lim, Algorithm Analysis",
 						"2018-1, SJ Kim, Java Programming",
